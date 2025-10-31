@@ -1,12 +1,10 @@
-// Program.cs
 using Backend.Data;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Configura o contexto do banco de dados
 builder.Services.AddDbContext<TodoContext>(opt =>
-    opt.UseInMemoryDatabase("LivrariaDb")); // Para testes locais
+    opt.UseNpgsql(builder.Configuration.GetConnectionString("PostgresConnection")));
 
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
@@ -14,7 +12,13 @@ builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
 
-// Middleware de desenvolvimento
+using (var scope = app.Services.CreateScope())
+{
+    var context = scope.ServiceProvider.GetRequiredService<TodoContext>();
+    context.Database.Migrate(); // Aplica migrations
+    DbInitializer.Seed(context); // Popula com dados iniciais
+}
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
