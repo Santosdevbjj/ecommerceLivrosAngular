@@ -55,14 +55,14 @@ Este projeto é o Back-End de um e-commerce de livros, desenvolvido com **.NET 8
 
 ⚙️ **Como Executar o Projeto**
 
-1. Clone o repositório
+**1. Clone o repositório**
 
 `bash
 git clone https://github.com/Santosdevbjj/ecommerceLivrosAngular
 cd ecommerceLivrosAngular/Backend
 `
 
-2. Configure o PostgreSQL
+**2. Configure o PostgreSQL**
 
 Crie um banco chamado livraria e atualize o arquivo appsettings.json com suas credenciais:
 
@@ -72,7 +72,7 @@ Crie um banco chamado livraria e atualize o arquivo appsettings.json com suas cr
 }
 `
 
-3. Restaure os pacotes e aplique a migration
+**3. Restaure os pacotes e aplique a migration**
 
 `bash
 dotnet restore
@@ -80,7 +80,7 @@ dotnet ef migrations add InitialCreate
 dotnet ef database update
 `
 
-4. Execute a aplicação
+**4. Execute a aplicação**
 
 `bash
 dotnet run
@@ -90,7 +90,7 @@ A API estará disponível em: https://localhost:5001/swagger
 
 ---
 
-🧪 Dados de Exemplo
+🧪 **Dados de Exemplo**
 
 O projeto inclui um script de inicialização (DbInitializer.cs) que insere automaticamente livros de exemplo no banco:
 
@@ -100,7 +100,7 @@ O projeto inclui um script de inicialização (DbInitializer.cs) que insere auto
 
 ---
 
-📌 Observações
+📌 **Observações**
 
 - O projeto utiliza Entity Framework Core com Npgsql para integração com PostgreSQL.
 - O banco é populado automaticamente na inicialização.
@@ -108,12 +108,132 @@ O projeto inclui um script de inicialização (DbInitializer.cs) que insere auto
 
 ---
 
-📬 Contato
+📬 **Contato**
 
 Desenvolvido por Sergio Santos  
 Para dúvidas ou sugestões, abra uma issue no repositório.
 
 ---
+
+# 📘 E-commerce de Livros — Frontend Angular
+
+Este projeto é o Front-End de um e-commerce de livros, desenvolvido com **Angular 16+**, **TypeScript** e **Bootstrap 5**. Ele consome a API REST criada em .NET 8 e exibe os livros de forma responsiva, com componentes reutilizáveis e design moderno.
+
+---
+
+## 🚀 Tecnologias Utilizadas
+
+- **Angular 16+** — Framework SPA moderno e escalável
+- **TypeScript** — Tipagem estática para maior segurança
+- **Bootstrap 5** — Estilização responsiva e elegante
+- **RxJS** — Programação reativa para chamadas assíncronas
+- **HTTPClient** — Comunicação com a API de livros
+
+---
+
+## 🗂️ Estrutura de Pastas e Arquivos. 
+
+<img width="1008" height="1700" alt="Screenshot_20251101-162910" src="https://github.com/user-attachments/assets/a636b1f4-e6e3-47f3-baaf-f61278977968" />
+
+
+---
+
+---
+
+## 💻 Requisitos de Hardware
+
+| Componente     | Recomendado           |
+|----------------|------------------------|
+| CPU            | Intel i5 ou superior   |
+| RAM            | 8 GB ou mais           |
+| Armazenamento  | 2 GB livres            |
+| Navegador      | Chrome, Edge ou Firefox |
+
+---
+
+## 🧰 Requisitos de Software
+
+- [Node.js v18+](https://nodejs.org/)
+- [Angular CLI](https://angular.io/cli)
+- [Git](https://git-scm.com/)
+- Editor recomendado: [Visual Studio Code](https://code.visualstudio.com/)
+
+---
+
+## ⚙️ Como Executar o Projeto
+
+### 1. Clone o repositório
+
+```bash
+git clone https://github.com/Santosdevbjj/ecommerceLivrosAngular
+cd ecommerceLivrosAngular/Frontend
+
+---
+```
+
+**2. Instale as dependências**
+
+`bash
+npm install
+`
+
+**3. Execute o projeto**
+
+`bash
+ng serve
+`
+
+Acesse no navegador: http://localhost:4200
+
+---
+
+🔗 **Integração com a API**
+
+Certifique-se de que o projeto Backend esteja rodando em https://localhost:5001. O serviço produto.service.ts está configurado para consumir os dados da API de livros.
+
+---
+
+🧩 **Componentes Visuais**
+
+**- NavComponent** — Menu superior com links
+**- HeaderComponent** — Cabeçalho com título e descrição
+**- FiltroProdutosComponent** — Campo de busca por título
+**- ListaProdutosComponent** — Exibe os livros em cards
+**- FooterComponent** — Rodapé com informações de copyright
+
+---
+
+📬 **Contato**
+
+Desenvolvido por Sergio Santos  
+Para dúvidas ou sugestões, abra uma issue no repositório.
+
+---
+
+
+
+🧭 **Navegação Rápida**
+
+| Pasta/Arquivo                     | Função                                                                 |
+|----------------------------------|------------------------------------------------------------------------|
+| Backend/Controllers/           | Define os endpoints da API REST                                       |
+| Backend/Data/                  | Gerencia o banco de dados e inicialização de dados                    |
+| Backend/Models/                | Define os modelos de dados usados na API                              |
+| Backend/Program.cs             | Configura e inicia o servidor da API                                  |
+| Frontend/src/app/components/   | Contém todos os componentes visuais da interface                      |
+| Frontend/src/app/services/     | Comunicação com a API via HTTP                                        |
+| Frontend/src/app/models/       | Define a estrutura dos dados recebidos da API                         |
+| Frontend/src/app/app.module.ts | Registra todos os componentes e módulos necessários                   |
+| Frontend/src/app/app.component.html | Organiza visualmente os componentes na tela principal         |
+
+--- 
+
+
+
+
+
+
+
 
 
 
