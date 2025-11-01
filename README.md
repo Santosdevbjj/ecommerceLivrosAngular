@@ -1,7 +1,9 @@
-## Criando seu E-commerce de Livros, Backend, Frontend em C# 12 .NET 8 e Angular
+## Criando seu E-commerce de Livros, Backend, Frontend em C# 12, .NET 8 e Angular
 
 
-<img width="1080" height="723" alt="Screenshot_20251101-171127" src="https://github.com/user-attachments/assets/1dba6483-162e-4336-bca0-2d73e5e927e6" />
+
+<img width="1080" height="723" alt="Screenshot_20251101-171127" src="https://github.com/user-attachments/assets/1dba6483-162e-4336-bca0-2d73e5e927e6" /> 
+
 
 
 ---
