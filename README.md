@@ -267,11 +267,292 @@ ng build --configuration production --base-href "https://Santosdevbjj.github.io/
 npx angular-cli-ghpages --dir=dist/livraria
 `
 
+--- 
+
+# 🚀 Deploy do Frontend Angular — Livraria Online
+
+Este guia explica como publicar o projeto Frontend Angular do e-commerce de livros em ambiente de produção. O projeto foi desenvolvido com Angular 16+ e está pronto para ser hospedado em servidores estáticos, GitHub Pages ou serviços como NGINX.
+
+---
+
+## 📦 Pré-requisitos
+
+Antes de iniciar o deploy, certifique-se de que:
+
+- O projeto está funcionando localmente (`ng serve`)
+- O Backend (.NET 8) está hospedado ou acessível via HTTPS
+- O Angular CLI está instalado:
+  ```bash
+  npm install -g @angular/cli
+
+
+
+  ---
+
+  
+---
+
+🛠️ **Gerar o Build de Produção**
+
+Execute o comando abaixo para gerar os arquivos otimizados:
+
+`bash
+ng build --configuration production
+`
+
+Os arquivos serão gerados na pasta:
+
+`
+dist/livraria/
+`
+
+---
+
+🌐 **Opções de Deploy**
+
+✅ 1. GitHub Pages
+
+Ideal para projetos públicos e hospedagem gratuita.
+
+Instale o pacote:
+
+`bash
+npm install -g angular-cli-ghpages
+`
+
+Gere o build com base-href:
+
+`bash
+ng build --configuration production --base-href "https://Santosdevbjj.github.io/ecommerceLivrosAngular/"
+`
+
+Publique:
+
+`bash
+npx angular-cli-ghpages --dir=dist/livraria
+`
+
+> Acesse: https://Santosdevbjj.github.io/ecommerceLivrosAngular/
+
+---
+
+✅ 2. Servidor Estático com http-server
+
+Instale o servidor:
+
+`bash
+npm install -g http-server
+`
+
+Execute:
+
+`bash
+http-server dist/livraria
+`
+
+> Acesse: http://localhost:8080
+
+---
+
+✅ **3. NGINX (Linux)**
+
+Configure o NGINX para servir os arquivos da pasta dist/livraria.
+
+Exemplo de configuração:
+
+`nginx
+server {
+  listen 80;
+  server_name livraria.local;
+
+  location / {
+    root /caminho/para/dist/livraria;
+    index index.html;
+    try_files $uri $uri/ /index.html;
+  }
+}
+`
+
+Reinicie o NGINX:
+
+`bash
+sudo systemctl restart nginx
+`
+
+---
+
+🔗 **Integração com a API**
+
+Certifique-se de que o serviço Backend esteja acessível via HTTPS, por exemplo:
+
+`ts
+private apiUrl = 'https://meusite.com/api/livraria';
+`
+
+Atualize o produto.service.ts com o endpoint correto.
+
+---
+
+📬 **Contato**
+
+Desenvolvido por Sergio Santos  
+Para dúvidas ou sugestões, abra uma issue no repositório.
+
+---
+`
+
 ---
 
 
 
+# 🚀 Deploy do Backend (.NET 8) — Livraria Online
 
+Este guia explica como publicar o projeto Backend do e-commerce de livros, desenvolvido com .NET 8 e C# 12, utilizando PostgreSQL como banco de dados. O projeto pode ser hospedado em serviços como Azure, Railway ou VPS Linux.
+
+---
+
+## 📦 Pré-requisitos
+
+Antes de iniciar o deploy, certifique-se de que:
+
+- O projeto está funcionando localmente (`dotnet run`)
+- O banco de dados PostgreSQL está configurado e acessível
+- Você possui uma conta nos serviços desejados (Azure, Railway ou VPS)
+
+---
+
+## ☁️ Opção 1: Azure App Service
+
+### 1. Instale a CLI do Azure
+
+```bash
+npm install -g azure-functions-core-tools
+az login
+
+---
+```
+
+
+**2. Crie o App Service**
+
+`bash
+az webapp up --name livraria-api --resource-group LivrariaRG --runtime "DOTNET|8.0"
+`
+
+**3. Configure a string de conexão**
+
+`bash
+az webapp config connection-string set \
+  --name livraria-api \
+  --resource-group LivrariaRG \
+  --settings PostgresConnection="Host=...;Database=...;Username=...;Password=..." \
+  --connection-string-type PostgreSQL
+`
+
+**4. Publique o projeto**
+
+`bash
+dotnet publish -c Release
+az webapp deploy --name livraria-api --resource-group LivrariaRG --src-path ./bin/Release/net8.0/publish
+`
+
+---
+
+🚉 **Opção 2: Railway**
+
+1. Crie um projeto no Railway
+
+- Acesse railway.app
+- Crie um novo projeto e selecione "Deploy from GitHub"
+
+**2. Configure variáveis de ambiente**
+
+Adicione a variável PostgresConnection com sua string de conexão PostgreSQL.
+
+**3. Configure o railway.json (opcional)**
+
+`json
+{
+  "build": {
+    "builder": "dotnet",
+    "buildCommand": "dotnet publish -c Release",
+    "startCommand": "dotnet Backend.dll"
+  }
+}
+`
+
+> **Railway detecta automaticamente projetos .NET e PostgreSQL.**
+
+---
+
+🖥️ **Opção 3: VPS Linux (Ubuntu + NGINX)**
+
+**1. Instale o .NET 8 no servidor**
+
+`bash
+wget https://dotnet.microsoft.com/download/dotnet/scripts/v1/dotnet-install.sh
+chmod +x dotnet-install.sh
+./dotnet-install.sh -c 8.0
+`
+
+
+**2. Publique o projeto localmente**
+
+`bash
+dotnet publish -c Release -o ./publish
+`
+
+**3. Transfira os arquivos para o VPS**
+
+`bash
+scp -r ./publish user@vps:/var/www/livraria-api
+`
+
+**4. Configure o NGINX**
+
+`nginx
+server {
+  listen 80;
+  server_name api.livraria.com;
+
+  location / {
+    proxy_pass         http://localhost:5000;
+    proxyhttpversion 1.1;
+    proxysetheader   Upgrade $http_upgrade;
+    proxysetheader   Connection keep-alive;
+    proxysetheader   Host $host;
+    proxycachebypass $http_upgrade;
+  }
+}
+`
+
+**5. Execute o projeto no VPS**
+
+`bash
+cd /var/www/livraria-api
+dotnet Backend.dll
+`
+
+---
+
+🔗 **Integração com o Frontend**
+
+Certifique-se de que o Frontend Angular esteja configurado para consumir a API publicada:
+
+`ts
+private apiUrl = 'https://api.livraria.com/api/livraria';
+`
+
+---
+
+📬 **Contato**
+
+Desenvolvido por Sergio Santos  
+Para dúvidas ou sugestões, abra uma issue no repositório.
+
+---
+`
+---
 
 
 
