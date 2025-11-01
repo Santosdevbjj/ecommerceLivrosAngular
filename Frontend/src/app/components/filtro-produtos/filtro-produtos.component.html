@@ -1,0 +1,17 @@
+<div class="filtro-container">
+  <input type="text" [(ngModel)]="termo" placeholder="Buscar por título..." />
+  <button (click)="buscar()">Buscar</button>
+</div>
+
+<div class="row mt-4" *ngIf="resultados.length > 0">
+  <div class="col-md-4" *ngFor="let livro of resultados">
+    <div class="card mb-4">
+      <img [src]="livro.imagemUrl" class="card-img-top" alt="{{livro.titulo}}">
+      <div class="card-body">
+        <h5 class="card-title">{{livro.titulo}}</h5>
+        <p class="card-text">{{livro.autor}}</p>
+        <p class="card-text"><strong>R$ {{livro.preco}}</strong></p>
+      </div>
+    </div>
+  </div>
+</div>
