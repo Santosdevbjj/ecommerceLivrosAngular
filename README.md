@@ -133,7 +133,8 @@ Este projeto é o Front-End de um e-commerce de livros, desenvolvido com **Angul
 
 ## 🗂️ Estrutura de Pastas e Arquivos. 
 
-<img width="1008" height="1700" alt="Screenshot_20251101-162910" src="https://github.com/user-attachments/assets/a636b1f4-e6e3-47f3-baaf-f61278977968" />
+<img width="977" height="1420" alt="Screenshot_20251101-163958" src="https://github.com/user-attachments/assets/7a989abb-36af-4efb-a9ed-eeacaf96aa70" />
+
 
 
 ---
