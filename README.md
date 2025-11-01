@@ -227,7 +227,49 @@ Para dúvidas ou sugestões, abra uma issue no repositório.
 | Frontend/src/app/app.module.ts | Registra todos os componentes e módulos necessários                   |
 | Frontend/src/app/app.component.html | Organiza visualmente os componentes na tela principal         |
 
+
 --- 
+
+---
+
+ **Script de Deploy para Produção**
+
+**1. Gere o build otimizado**
+
+`bash
+ng build --configuration production
+`
+
+> Isso criará os arquivos otimizados na pasta dist/livraria.
+
+**2. Hospede os arquivos gerados**
+
+Você pode usar qualquer servidor web estático, como:
+
+✅ **Com http-server**
+
+`bash
+npm install -g http-server
+http-server dist/livraria
+`
+
+✅ **Com NGINX (Linux)**
+
+Configure o NGINX para servir os arquivos da pasta dist/livraria.
+
+✅ **Com GitHub Pages**
+
+**Use o pacote angular-cli-ghpages:**
+
+`bash
+npm install -g angular-cli-ghpages
+ng build --configuration production --base-href "https://Santosdevbjj.github.io/ecommerceLivrosAngular/"
+npx angular-cli-ghpages --dir=dist/livraria
+`
+
+---
+
+
 
 
 
