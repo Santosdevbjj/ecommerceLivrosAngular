@@ -1,4 +1,4 @@
-## Criando seu E-commerce de Livros, Backend, Frontend em C# 12, .NET 8 e Angular
+## Criando seu E-commerce de Livros: Backend, Frontend em C# 12, .NET 8 e Angular
 
 
 
